@@ -11,13 +11,13 @@ jobs:
       run: sudo apt update && sudo apt install -y wget unzip openssh-server
 
     - name: Download Ngrok
-      run: wget https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.zip -O ngrok.zip
+      run: wget https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-windows-amd64.zip -O ngrok.zip
 
     - name: Extract Ngrok
       run: unzip ngrok.zip
 
     - name: Authenticate Ngrok
-      run: ./ngrok authtoken ${{ secrets.NGROK_AUTH_TOKEN }}
+      run: .%HOMEPATH%\AppData\Local\ngrok\ngrok.yml
       env:
         NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
 
