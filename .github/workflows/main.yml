@@ -19,8 +19,7 @@ jobs:
     - name: Authenticate Ngrok
       run: .C:\Users\SMPN 9 RANGKASBITUNG\AppData\Local\ngrok
       env:
-        NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
-
+        NGROK_AUTH_TOKEN: 2xAgmZUcNhXMfcGibygqy9MLdMX_7kuh87H5kWL8Y5W12Rdii
     - name: Enable SSH Server
       run: sudo systemctl start ssh && sudo systemctl enable ssh
 
