@@ -1,4 +1,4 @@
-name: Windows VPS Setup
+name: Linux VPS Setup
 
 on: [push, workflow_dispatch]
 
@@ -11,15 +11,16 @@ jobs:
       run: sudo apt update && sudo apt install -y wget unzip openssh-server
 
     - name: Download Ngrok
-      run: wget https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-windows-amd64.zip -O ngrok.zip
+      run: wget https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.zip -O ngrok.zip
 
     - name: Extract Ngrok
       run: unzip ngrok.zip
 
     - name: Authenticate Ngrok
-      run: .C:\Users\SMPN 9 RANGKASBITUNG\AppData\Local\ngrok
+      run: ./ngrok authtoken ${{ secrets.NGROK_AUTH_TOKEN }}
       env:
-        NGROK_AUTH_TOKEN: 2xAgmZUcNhXMfcGibygqy9MLdMX_7kuh87H5kWL8Y5W12Rdii
+        NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
+
     - name: Enable SSH Server
       run: sudo systemctl start ssh && sudo systemctl enable ssh
 
@@ -30,4 +31,4 @@ jobs:
       run: sudo sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config && sudo systemctl restart ssh
 
     - name: Create SSH Tunnel with Ngrok
-      run: ./ngrok tcp
+      run: ./ngrok tcp 8534
