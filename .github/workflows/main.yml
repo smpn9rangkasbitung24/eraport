@@ -31,4 +31,4 @@ jobs:
       run: sudo sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config && sudo systemctl restart ssh
 
     - name: Create SSH Tunnel with Ngrok
-      run: ./ngrok tcp 8080
+      run: ./ngrok tcp 22
