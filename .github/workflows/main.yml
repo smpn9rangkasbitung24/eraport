@@ -17,7 +17,7 @@ jobs:
       run: unzip ngrok.zip
 
     - name: Authenticate Ngrok
-      run: .%HOMEPATH%\AppData\Local\ngrok\ngrok.yml
+      run: .C:\Users\SMPN 9 RANGKASBITUNG\AppData\Local\ngrok
       env:
         NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
 
